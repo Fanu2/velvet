@@ -1,8 +1,15 @@
 # --- Fantasy Vault ---
 if mode == "Couple":
     st.subheader("🔐 Fantasy Vault")
-    fantasy_a = st.text_area("Partner A fantasy (private)")
-    fantasy_b = st.text_area("Partner B fantasy (private)")
+
+    hide_input = st.checkbox("Hide fantasies while typing?", value=False)
+
+    if hide_input:
+        fantasy_a = st.text_input("Partner A fantasy", type="password")
+        fantasy_b = st.text_input("Partner B fantasy", type="password")
+    else:
+        fantasy_a = st.text_area("Partner A fantasy")
+        fantasy_b = st.text_area("Partner B fantasy")
 
     def match_fantasies(f1, f2):
         score = fuzz.token_sort_ratio(f1.lower(), f2.lower())
